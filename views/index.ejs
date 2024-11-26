@@ -3,19 +3,21 @@
 <%- include("./components/header.ejs", { title: "Home" }) %>
 <script src="/assets/js/bundle_error.js"></script>
  <body class="bg-neutral-900">
-    <div class="bg-gradient-to-b from-purple-600 to-purple-800 text-white min-h-screen flex flex-col items-center">
-        <header class="w-full flex justify-end p-4">
-          <nav class="flex gap-6">
-            <a href="#" class="text-white">Home</a>
-            <a href="#" class="text-white">Blog</a>
-            <a href="#" class="text-white">Status</a>
+    <div class="bg-[radial-gradient(169.40%_89.55%_at_94.76%_6.29%,rgb(67,56,202)_0%,rgb(91,33,182)_100%)] from-[#4338CA] to-[#5B21B6] text-white min-h-screen flex flex-col items-center">
+        <header class="w-full flex justify-center p-4">
+          <nav class="flex gap-6 text-center">
+            <a href="#" class="text-neutral-200/65 focus:scale-90 transition-all ease-in-out font-semibold mt-2">Home</a>
+            <a href="#" class="text-neutral-200/55 hover:text-neutral-200/65 focus:scale-95 transition-all ease-in-out hover:-translate-y-2 font-semibold mt-2">Blog</a>
+            <a href="#" class="text-neutral-200/55 hover:text-neutral-200/65 focus:scale-95 transition-all ease-in-out hover:-translate-y-2 font-semibold mt-2">Status</a>
           </nav>
           <div class="ml-4 w-10 h-10 rounded-full bg-cover bg-center" style="background-image: url('path-to-avatar.jpg');"></div>
         </header>
         <main class="flex-grow flex flex-col items-center justify-center text-center">
-          <h1 class="text-4xl md:text-6xl font-bold">Level up your discord server</h1>
-          <p class="mt-4 text-lg md:text-xl">Upgrade your community with PotatoBot, one of the best open-source Discord bots ever</p>
-          <div class="mt-6 w-40 h-12 bg-black"></div>
+          <h1 class="text-4xl md:text-6xl font-bold font-calsans text-neutral-200">Level up your reach with your community</h1>
+          <p class="mt-4  md:text-xl text-neutral-300 font-semibold">Upgrade the connection with your members, friends or family with Subliminal</p>
+          <div class="text-neutral-300 hover:text-neutral-300/85 mt-6 py-3 px-5 rounded-r-full rounded-l-full bg-neutral-800 text-center flex justify-center focus:scale-90 transition-all ease-in-out hover:bg-neutral-800/65 filter backdrop-blur-md">
+            Get started
+          </div>
         </main>
       </div>
  </body>
