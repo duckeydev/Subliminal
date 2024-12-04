@@ -1,0 +1,38 @@
+@import url("./calsans/fonts.css");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Default state: transparent underline */
+.nav-link {
+  border-bottom: 2px solid transparent;
+  color: #6b7280; /* Default text color */
+  transition: border-bottom-width 0.3s ease, border-color 0.3s ease;
+}
+
+/* Active link state: visible underline and active text color */
+.nav-link[aria-current="page"] {
+  border-bottom: 2px solid #3b82f6; /* Active underline color */
+  color: #e5e7eb; /* Active text color */
+}
+
+.apexcharts-tooltip {
+  background: transparent;
+  background-color: transparent;
+}
+.apexcharts-theme-light {
+  background: transparent;
+  background-color: transparent;
+}
+.apexcharts-theme-dark {
+  background: transparent;
+  background-color: transparent;
+}
+
+.charts-active {
+  background-color:transparent;
+}
+
+.apexcharts-tooltip.apexcharts-theme-light {
+  background: transparent;
+  background-color: transparent;
+}
