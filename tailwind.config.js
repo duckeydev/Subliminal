@@ -1,11 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: ["./views/**/*", "./assets/**/*", "./node_modules/preline/**/*"],
   theme: {
     extend: {
       fontFamily: {
         calsans: "Cal Sans"
-      }
+      },
     },
   },
   plugins: [
@@ -17,6 +20,7 @@ module.exports = {
       // which flavour of colours to use by default, in the `:root`
       defaultFlavour: "mocha",
     }),
+    require("@tailwindcss/forms")
 
   ],
 }

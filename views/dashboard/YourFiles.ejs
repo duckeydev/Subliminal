@@ -4,12 +4,8 @@
   <script src="/assets/js/pageSpecific/dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="/assets/js/animeThyNavs.js"></script>
-  <head>
-    <!-- Add necessary meta tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-  </head>
+  <script src="/node_modules/colorthief/dist/color-thief.umd.js"></script>
+
   <body class="bg-neutral-900">
     <div id="modal-container"></div>
 
@@ -286,8 +282,8 @@
                 class="py-2 md:py-0 flex flex-col md:flex-row md:items-center gap-y-0.5 md:gap-y-0 md:gap-x-6"
               >
                 <a
-                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-200"
-                  href="#"
+                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-400 hover:text-neutral-200/80 transition-colors"
+                  href="/dashboard"
                   aria-current="page"
                 >
                   <svg
@@ -310,7 +306,7 @@
                   Dashboard
                 </a>
                 <a
-                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-400 hover:text-neutral-200/80 transition-colors"
+                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-200"
                   href="/dashboard/files"
                   aria-current="page"
                 >
@@ -473,407 +469,35 @@
       <div
         class="max-w-[85rem] min-h-[75rem] mx-auto py-10 px-4 sm:px-6 lg:px-8"
       >
-        <h1 class="font-calsans text-3xl text-neutral-200">Dashboard</h1>
         <div>
-          <h3
-            class="text-base font-semibold leading-6 mt-5 text-neutral-200/90"
-          >
-            Last 30 days
-          </h3>
-          <dl class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            <div
-              class="overflow-hidden rounded-lg bg-neutral-800 px-4 py-5 shadow sm:p-6"
-            >
-              <dt class="truncate text-sm font-medium text-neutral-400">
-                Total Files
-              </dt>
-              <dd
-                class="mt-1 text-3xl font-semibold tracking-tight text-neutral-300"
+          <h1 class="font-calsans text-3xl text-neutral-200">Your Files</h1>
+          <div class="grid grid-cols-3 grid-rows-5 gap-3">
+            <div class="w-full h-full">
+              <div
+                class="bg-neutral-800 border group border-neutral-700 rounded-lg overflow-hidden relative"
               >
-                71,897
-              </dd>
-            </div>
-            <div
-              class="overflow-hidden rounded-lg bg-neutral-800 px-4 py-5 shadow sm:p-6"
-            >
-              <dt class="truncate text-sm font-medium text-neutral-400">
-                Total Views
-              </dt>
-              <dd
-                class="mt-1 text-3xl font-semibold tracking-tight text-neutral-300"
-              >
-                0.1
-              </dd>
-            </div>
-            <div
-              class="overflow-hidden rounded-lg bg-neutral-800 px-4 py-5 shadow sm:p-6"
-            >
-              <dt class="truncate text-sm font-medium text-neutral-400">
-                Total Space
-              </dt>
-              <dd
-                class="mt-1 text-3xl font-semibold tracking-tight text-neutral-300"
-              >
-                5.2GB
-              </dd>
-            </div>
-          </dl>
-        </div>
-
-        <!-- Table Section -->
-        <div class="mt-5">
-          <!-- Card -->
-          <div class="flex flex-col">
-            <div class="-m-1.5 overflow-x-auto">
-              <div class="p-1.5 min-w-full inline-block align-middle">
+                <img
+                  class="rounded-lg w-full h-full object-cover"
+                  id="skibidi"
+                  src="https://cdn.discordapp.com/attachments/898041849783148585/1314799694899314739/macOS_Sequoia_Light.jpg?ex=67551623&is=6753c4a3&hm=5399ba16ef2e506c2696677b77994d6c363d0fb225e4c040a2a6edeacc449b34&"
+                  alt="photo.png"
+                />
+                <!-- Gradient Bleed-Out Effect -->
                 <div
-                  class="bg-neutral-800 border border-neutral-700 rounded-xl shadow-sm overflow-hidden"
+                  class="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
+                ></div>
+                <!-- Hover Content -->
+                <div
+                  class="absolute bottom-0 left-0 w-full p-3 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"
                 >
-                  <!-- Header -->
-                  <div
-                    class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-b border-neutral-700"
-                  >
-                    <div>
-                      <h2 class="text-xl font-semibold text-neutral-200">
-                        Files & Urls
-                      </h2>
-                      <p class="text-sm text-neutral-200/75">
-                        Files and url's you've created to share with others or
-                        for marketing
-                      </p>
-                    </div>
-
-                    <div>
-                      <div class="inline-flex gap-x-2">
-                        <a
-                          class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
-                          href="#"
-                        >
-                          View all
-                        </a>
-
-                        <a
-                          class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 disabled:opacity-50 disabled:pointer-events-none transition-all"
-                          href="#"
-                        >
-                          <svg
-                            class="shrink-0 size-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path d="M5 12h14" />
-                            <path d="M12 5v14" />
-                          </svg>
-                          Create
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Header -->
-
-                  <!-- Table -->
-                  <table class="min-w-full divide-y divide-neutral-700">
-                    <thead class="bg-neutral-800">
-                      <tr>
-                        <th scope="col" class="ps-6 py-3 text-start">
-                          <label for="hs-at-with-checkboxes-main" class="flex">
-                            <input
-                              type="checkbox"
-                              class="shrink-0 border-neutral-700 rounded text-indigo-600 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none"
-                              id="hs-at-with-checkboxes-main"
-                            />
-                            <span class="sr-only">Checkbox</span>
-                          </label>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3 text-start">
-                          <div class="flex items-center gap-x-2">
-                            <span
-                              class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
-                            >
-                              Name
-                            </span>
-                          </div>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3 text-start">
-                          <div class="flex items-center gap-x-2">
-                            <span
-                              class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
-                            >
-                              URL
-                            </span>
-                          </div>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3 text-start">
-                          <div class="flex items-center gap-x-2">
-                            <span
-                              class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
-                            >
-                              ID
-                            </span>
-                          </div>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3 text-start">
-                          <div class="flex items-center gap-x-2">
-                            <span
-                              class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
-                            >
-                              Views
-                            </span>
-                          </div>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3 text-start">
-                          <div class="flex items-center gap-x-2">
-                            <span
-                              class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
-                            >
-                              Status
-                            </span>
-                          </div>
-                        </th>
-
-                        <th scope="col" class="px-6 py-3 text-end"></th>
-                      </tr>
-                    </thead>
-
-                    <tbody class="divide-y divide-neutral-700">
-                      <tr>
-                        <td class="size-px whitespace-nowrap">
-                          <div class="ps-6 py-3">
-                            <label for="hs-at-with-checkboxes-1" class="flex">
-                              <input
-                                type="checkbox"
-                                class="shrink-0 border-neutral-700 rounded text-indigo-600 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none"
-                                id="hs-at-with-checkboxes-1"
-                              />
-                              <span class="sr-only">Checkbox</span>
-                            </label>
-                          </div>
-                        </td>
-
-                        <td class="size-px whitespace-nowrap">
-                          <div class="px-6 py-3">
-                            <span class="text-sm text-neutral-400"
-                              >Skibidi</span
-                            >
-                          </div>
-                        </td>
-                        <td class="size-px whitespace-nowrap">
-                          <div class="px-6 py-3">
-                            <button
-                              type="button"
-                              class="py-2 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
-                            >
-                              Copy URL
-                              <svg
-                                class="shrink-0 size-4 text-gray-400"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                              >
-                                <rect
-                                  width="8"
-                                  height="4"
-                                  x="8"
-                                  y="2"
-                                  rx="1"
-                                  ry="1"
-                                />
-                                <path
-                                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
-                                />
-                              </svg>
-                            </button>
-                          </div>
-                        </td>
-                        <td class="size-px whitespace-nowrap">
-                          <div class="px-6 py-3">
-                            <span class="text-sm text-neutral-400"
-                              >aaec8c1f-b390-11ef-9d0a-f49fefe1b311</span
-                            >
-                          </div>
-                        </td>
-                        <td class="size-px whitespace-nowrap">
-                          <div class="px-6 py-3">
-                            <span class="text-sm text-neutral-400">0.1</span>
-                          </div>
-                        </td>
-                        <td class="size-px whitespace-nowrap">
-                          <div class="px-6 py-1.5">
-                            <span
-                              class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-orange-100 text-orange-800"
-                            >
-                              <svg
-                                class="size-2.5"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="16"
-                                height="16"
-                                fill="currentColor"
-                                viewBox="0 0 16 16"
-                              >
-                                <path
-                                  d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
-                                ></path>
-                              </svg>
-                              Warning
-                            </span>
-                          </div>
-                        </td>
-                        <td class="size-px whitespace-nowrap">
-                          <div class="px-6 py-1.5">
-                            <div
-                              class="hs-dropdown [--placement:bottom-right] relative inline-block"
-                            >
-                              <button
-                                id="hs-table-dropdown-2"
-                                type="button"
-                                class="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-700 align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
-                                aria-haspopup="menu"
-                                aria-expanded="false"
-                                aria-label="Dropdown"
-                              >
-                                <svg
-                                  class="shrink-0 size-4"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  width="24"
-                                  height="24"
-                                  viewBox="0 0 24 24"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  stroke-width="2"
-                                  stroke-linecap="round"
-                                  stroke-linejoin="round"
-                                >
-                                  <circle cx="12" cy="12" r="1" />
-                                  <circle cx="19" cy="12" r="1" />
-                                  <circle cx="5" cy="12" r="1" />
-                                </svg>
-                              </button>
-                              <div
-                                class="hs-dropdown-menu transition-[opacity,margin] border-neutral-700  border filter backdrop-blur-sm duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-neutral-700 min-w-40 z-10 bg-neutral-700/75 shadow-2xl rounded-lg p-2 mt-2"
-                                role="menu"
-                                aria-orientation="vertical"
-                                aria-labelledby="hs-table-dropdown-2"
-                              >
-                                <div class="py-2 first:pt-0 last:pb-0">
-                                  <a
-                                    class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                                    href="#"
-                                  >
-                                    Rename
-                                  </a>
-                                  <a
-                                  class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                                  href="#"
-                                  >
-                                    Regenrate Key
-                                  </a>
-                                  <a
-                                  class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                                    href="#"
-                                  >
-                                    Disable
-                                  </a>
-                                </div>
-                                <div class="py-2 first:pt-0 last:pb-0">
-                                  <a
-                                  class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                                    href="#"
-                                  >
-                                    Delete
-                                  </a>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <!-- End Table -->
-
-                  <!-- Footer -->
-                  <div
-                    class="px-6 py-4 grid gap-3 md:flex md:justify-between md:items-center border-t border-neutral-700"
-                  >
-                    <div>
-                      <p class="text-sm text-neutral-400">
-                        <span class="font-semibold text-neutral-300">6</span>
-                        results
-                      </p>
-                    </div>
-
-                    <div>
-                      <div class="inline-flex gap-x-2">
-                        <button
-                          type="button"
-                          class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
-                        >
-                          <svg
-                            class="shrink-0 size-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path d="m15 18-6-6 6-6" />
-                          </svg>
-                          Prev
-                        </button>
-
-                        <button
-                          type="button"
-                          class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
-                        >
-                          Next
-                          <svg
-                            class="shrink-0 size-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path d="m9 18 6-6-6-6" />
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                  <!-- End Footer -->
+                  <h1 class="text-xl font-calsans text-neutral-300">
+                    Sequoia.png
+                  </h1>
                 </div>
               </div>
             </div>
           </div>
-          <!-- End Card -->
         </div>
-        <!-- End Table Section -->
       </div>
     </main>
     <!-- ========== END MAIN CONTENT ========== -->

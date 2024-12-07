@@ -19,6 +19,9 @@ module.exports = {
     session_secret: "Skibidi",
     secretKey: "sdfdsad"
   },
+  apikeys: {
+    huggingFace: "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" // AI
+  },
   database: {
     useADatabase: true,
     mongodb: {

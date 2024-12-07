@@ -7,4 +7,8 @@ router.get("/", CheckAuth, async (req, res) => {
     res.render("../views/dashboard/index.ejs")
 })
 
+router.get("/files", CheckAuth, async (req, res) => {
+    res.render("../views/dashboard/YourFiles.ejs")
+})
+
 module.exports = router

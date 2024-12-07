@@ -132,6 +132,7 @@ require("./handler/loader.js");
 
 
 app.use("/assets", express.static("assets"))
+app.use("/components", express.static("components"))
 app.use("/node_modules", express.static("node_modules"))
 app.use("/", require('./routers/client/index.js'))
 app.use("/api", require('./routers/api/index.js'))
@@ -141,6 +142,7 @@ app.use('/dashboard', require('./routers/client/dashboard.js'))
 app.all("/i_Love_funny", async (req, res) => {
   res.status(418).send("Im a teapot :3")
 })
+
 
 // Catch 404 errors
 app.use((req, res, next) => {
