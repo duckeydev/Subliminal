@@ -4,7 +4,7 @@ module.exports = {
     title: "Meow",
     serveo_enabled: false,
     serveo: {
-      subdomain: "subliminal",
+      subdomain: "transitcdn",
     },
     debug: {
       generateDebug: true,
@@ -17,7 +17,8 @@ module.exports = {
     errorPage: true, // Custom error page if true
     healthCheck: true,
     session_secret: "Skibidi",
-    secretKey: "sdfdsad"
+    encrypt_key: "sdfdsad",
+    url: "https://humble-space-happiness-jj4rjp7rvxq6fqrr4-3000.app.github.dev"
   },
   apikeys: {
     huggingFace: "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" // AI
@@ -56,4 +57,13 @@ module.exports = {
       },
     },
   },
+  mail: {
+    host: "smtp.zoho.com",
+    port: 465,
+    secure: true, // true for port 465, false for other ports
+    auth: {
+      user: "noreply@ambrosia.gg",
+      pass: "DuckeyDev$69",
+    },
+  }
 };

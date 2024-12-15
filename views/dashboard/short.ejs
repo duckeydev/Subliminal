@@ -4,12 +4,8 @@
   <script src="/assets/js/pageSpecific/dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="/assets/js/animeThyNavs.js"></script>
-  <head>
-    <!-- Add necessary meta tags -->
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-  </head>
+  <script src="/node_modules/colorthief/dist/color-thief.umd.js"></script> 
+
   <body class="bg-neutral-900">
     <div id="modal-container"></div>
 
@@ -173,8 +169,8 @@
                 class="py-2 md:py-0 flex flex-col md:flex-row md:items-center gap-y-0.5 md:gap-y-0 md:gap-x-6"
               >
                 <a
-                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-200"
-                  href="#"
+                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-400 hover:text-neutral-200/80 transition-colors"
+                  href="/dashboard"
                   aria-current="page"
                 >
                   <svg
@@ -360,51 +356,6 @@
       <div
         class="max-w-[85rem] min-h-[75rem] mx-auto py-10 px-4 sm:px-6 lg:px-8"
       >
-        <h1 class="font-calsans text-3xl text-neutral-200">Dashboard</h1>
-        <div>
-          <dl class="mt-2 grid grid-cols-1 gap-5 sm:grid-cols-3">
-            <div
-              class="overflow-hidden rounded-lg bg-neutral-800 px-4 py-5 shadow sm:p-6"
-            >
-              <dt class="truncate text-sm font-medium text-neutral-400">
-                Total Files
-              </dt>
-              <dd
-                class="mt-1 text-3xl font-semibold tracking-tight text-neutral-300"
-                id="TF"
-              >
-                0
-              </dd>
-            </div>
-            <div
-              class="overflow-hidden rounded-lg bg-neutral-800 px-4 py-5 shadow sm:p-6"
-            >
-              <dt class="truncate text-sm font-medium text-neutral-400">
-                Total Views
-              </dt>
-              <dd
-                class="mt-1 text-3xl font-semibold tracking-tight text-neutral-300"
-                id="TV"
-              >
-                0
-              </dd>
-            </div>
-            <div
-              class="overflow-hidden rounded-lg bg-neutral-800 px-4 py-5 shadow sm:p-6"
-            >
-              <dt class="truncate text-sm font-medium text-neutral-400">
-                Total Space
-              </dt>
-              <dd
-                class="mt-1 text-3xl font-semibold tracking-tight text-neutral-300"
-                id="TS"
-              >
-                0
-              </dd>
-            </div>
-          </dl>
-        </div>
-
         <!-- Table Section -->
         <div class="mt-5">
           <!-- Card -->
@@ -420,11 +371,13 @@
                   >
                     <div>
                       <h2 class="text-xl font-semibold text-neutral-200">
-                        Files & Urls
+                        Shortened Links
                       </h2>
                       <p class="text-sm text-neutral-200/75">
-                        Files and url's you've created to share with others or
-                        for marketing
+                        Links you've shortened
+                        <span class="text-xs text-neutral-600"
+                          >(for some reason)</span
+                        >
                       </p>
                     </div>
 
@@ -440,6 +393,10 @@
                         <a
                           class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 disabled:opacity-50 disabled:pointer-events-none transition-all"
                           href="#"
+                          aria-haspopup="dialog"
+                          aria-expanded="false"
+                          aria-controls="hs-vertically-centered-modal"
+                          data-hs-overlay="#hs-vertically-centered-modal"
                         >
                           <svg
                             class="shrink-0 size-4"
@@ -503,7 +460,27 @@
                             <span
                               class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
                             >
+                              Redirects
+                            </span>
+                          </div>
+                        </th>
+
+                        <th scope="col" class="px-6 py-3 text-start">
+                          <div class="flex items-center gap-x-2">
+                            <span
+                              class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
+                            >
                               Views
+                            </span>
+                          </div>
+                        </th>
+
+                        <th scope="col" class="px-6 py-3 text-start">
+                          <div class="flex items-center gap-x-2">
+                            <span
+                              class="text-xs font-semibold uppercase tracking-wide text-neutral-300"
+                            >
+                              Status
                             </span>
                           </div>
                         </th>
@@ -512,10 +489,145 @@
                       </tr>
                     </thead>
 
-                    <tbody
-                      class="divide-y divide-neutral-700"
-                      id="contained"
-                    ></tbody>
+                    <tbody class="divide-y divide-neutral-700">
+                      <tr>
+                        <td class="size-px whitespace-nowrap">
+                          <div class="ps-6 py-3">
+                            <label for="hs-at-with-checkboxes-1" class="flex">
+                              <input
+                                type="checkbox"
+                                class="shrink-0 border-neutral-700 rounded text-indigo-600 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none"
+                                id="hs-at-with-checkboxes-1"
+                              />
+                              <span class="sr-only">Checkbox</span>
+                            </label>
+                          </div>
+                        </td>
+
+                        <td class="size-px whitespace-nowrap">
+                          <div class="px-6 py-3">
+                            <span class="text-sm text-neutral-400"
+                              >Skibidi</span
+                            >
+                          </div>
+                        </td>
+                        <td class="size-px whitespace-nowrap">
+                          <div class="px-6 py-3">
+                            <button
+                              type="button"
+                              class="py-2 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
+                            >
+                              Copy URL
+                              <svg
+                                class="shrink-0 size-4 text-gray-400"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                              >
+                                <rect
+                                  width="8"
+                                  height="4"
+                                  x="8"
+                                  y="2"
+                                  rx="1"
+                                  ry="1"
+                                />
+                                <path
+                                  d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"
+                                />
+                              </svg>
+                            </button>
+                          </div>
+                        </td>
+                        <td class="size-px whitespace-nowrap">
+                          <div class="px-6 py-3">
+                            <span class="text-sm text-neutral-400"
+                              >google.com</span
+                            >
+                          </div>
+                        </td>
+                        <td class="size-px whitespace-nowrap">
+                          <div class="px-6 py-3">
+                            <span class="text-sm text-neutral-400">0.1</span>
+                          </div>
+                        </td>
+                        <td class="size-px whitespace-nowrap">
+                          <div class="px-6 py-1.5">
+                            <span
+                              class="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-orange-100 text-orange-800"
+                            >
+                              <svg
+                                class="size-2.5"
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                viewBox="0 0 16 16"
+                              >
+                                <path
+                                  d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"
+                                ></path>
+                              </svg>
+                              Warning
+                            </span>
+                          </div>
+                        </td>
+                        <td class="size-px whitespace-nowrap">
+                          <div class="px-6 py-1.5">
+                            <div
+                              class="hs-dropdown [--placement:bottom-right] relative inline-block"
+                            >
+                              <button
+                                id="hs-table-dropdown-2"
+                                type="button"
+                                class="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-700 align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
+                                aria-haspopup="menu"
+                                aria-expanded="false"
+                                aria-label="Dropdown"
+                              >
+                                <svg
+                                  class="shrink-0 size-4"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="24"
+                                  height="24"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  stroke-width="2"
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                >
+                                  <circle cx="12" cy="12" r="1" />
+                                  <circle cx="19" cy="12" r="1" />
+                                  <circle cx="5" cy="12" r="1" />
+                                </svg>
+                              </button>
+                              <div
+                                class="hs-dropdown-menu transition-[opacity,margin] border-neutral-700 border filter backdrop-blur-sm duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-neutral-700 min-w-40 z-10 bg-neutral-700/75 shadow-2xl rounded-lg p-2 mt-2"
+                                role="menu"
+                                aria-orientation="vertical"
+                                aria-labelledby="hs-table-dropdown-2"
+                              >
+                                <div class="py-2 first:pt-0 last:pb-0">
+                                  <a
+                                    class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
+                                    href="#"
+                                  >
+                                    Delete
+                                  </a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
                   </table>
                   <!-- End Table -->
 
@@ -525,7 +637,7 @@
                   >
                     <div>
                       <p class="text-sm text-neutral-400">
-                        <span class="font-semibold text-neutral-300" id="result">0</span>
+                        <span class="font-semibold text-neutral-300">6</span>
                         results
                       </p>
                     </div>
@@ -583,177 +695,104 @@
           </div>
           <!-- End Card -->
         </div>
+
         <!-- End Table Section -->
+        <div
+          id="hs-vertically-centered-modal"
+          class="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
+          role="dialog"
+          tabindex="-1"
+          aria-labelledby="hs-vertically-centered-modal-label"
+        >
+          <div
+            class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center"
+          >
+            <div
+              class="w-full flex flex-col border shadow-sm rounded-xl pointer-events-auto bg-neutral-800 border-neutral-700 shadow-neutral-700/70"
+            >
+              <div
+                class="flex justify-between items-center py-3 px-4 border-b border-neutral-700"
+              >
+                <h3
+                  id="hs-vertically-centered-modal-label"
+                  class="font-bold text-white"
+                >
+                  Create a short URL
+                </h3>
+                <button
+                  type="button"
+                  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
+                  aria-label="Close"
+                  data-hs-overlay="#hs-vertically-centered-modal"
+                >
+                  <span class="sr-only">Close</span>
+                  <svg
+                    class="shrink-0 size-4"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M18 6 6 18"></path>
+                    <path d="m6 6 12 12"></path>
+                  </svg>
+                </button>
+              </div>
+              <div class="p-4 overflow-y-auto">
+                <div>
+                  <label
+                    for="email"
+                    class="block text-sm font-medium leading-6 text-neutral-200"
+                    >Name</label
+                  >
+                  <div class="mt-2">
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      value=""
+                      class="block w-full rounded-md border-0 py-1.5 bg-neutral-700 text-neutral-300 shadow-sm ring-1 ring-neutral-700/65 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed  sm:text-sm sm:leading-6"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="company-website" class="block text-sm font-medium leading-6 text-neutral-900">Company Website</label>
+                  <div class="mt-2 flex rounded-md shadow-sm">
+                    <span class="inline-flex items-center rounded-l-md border border-r-0 border-neutral-300 px-3 text-neutral-500 sm:text-sm">http://</span>
+                    <input type="text" name="company-website" id="company-website" class="block w-full rounded-md border-0 py-1.5 bg-neutral-700 text-neutral-300 shadow-sm ring-1 ring-neutral-700/65 placeholder:text-neutral-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 disabled:cursor-not-allowed  sm:text-sm sm:leading-6" placeholder="www.example.com">
+                  </div>
+                </div>
+                
+              </div>
+              <div
+                class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700"
+              >
+                <button
+                  type="button"
+                  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
+                  data-hs-overlay="#hs-vertically-centered-modal"
+                >
+                  Close
+                </button>
+                <button
+                  type="button"
+                  class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700 disabled:opacity-50 disabled:pointer-events-none transition-all"
+                >
+                  Save changes
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
   </body>
-  <script>
-    function formatBytes(bytes) {
-      if (bytes === 0) return "0 Bytes";
-      const units = ["Bytes", "KB", "MB", "GB", "TB"];
-      const i = Math.floor(Math.log(bytes) / Math.log(1024));
-      return `${(bytes / Math.pow(1024, i)).toFixed(2)} ${units[i]}`;
-    }
-
-    document.addEventListener("DOMContentLoaded", async () => {
-      const TF = document.getElementById("TF");
-      const TS = document.getElementById("TS");
-      const TV = document.getElementById("TV");
-
-      try {
-        const response = await axios.get("/api/user/stats");
-        TF.innerText = response.data.fileCount;
-        TS.innerText = formatBytes(response.data.totalSize);
-        TV.innerText = response.data.totalViews;
-      } catch (error) {
-        console.error("Error fetching stats:", error);
-      }
-
-      axios
-  .get("/api/user/files")
-  .then((response) => {
-    // Debugging: Log the full response
-    console.log("API Response:", response);
-
-    const container = document.getElementById("contained");
-    if (!container) {
-      console.error("Element with ID 'contained' not found");
-      return;
-    }
-
-    const files = response.data?.data?.files;
-    if (!files || files.length === 0) {
-      console.warn("No files found in the response");
-      return;
-    }
-
-   const result = document.getElementById("result")
-   result.innerText = files.length
-
-    // Iterate over files and create elements
-    files.forEach((data) => {
-      const fileElement = document.createElement("tr");
-      fileElement.innerHTML = `
-        <td class="size-px whitespace-nowrap">
-          <div class="ps-6 py-3">
-            <label for="hs-at-with-checkboxes-1" class="flex">
-              <input
-                type="checkbox"
-                class="shrink-0 border-neutral-700 rounded text-indigo-600 focus:ring-indigo-500 disabled:opacity-50 disabled:pointer-events-none"
-                id="hs-at-with-checkboxes-1"
-              />
-              <span class="sr-only">Checkbox</span>
-            </label>
-          </div>
-        </td>
-        <td class="size-px whitespace-nowrap">
-          <div class="px-6 py-3">
-            <span class="text-sm text-neutral-400">${data.name}</span>
-          </div>
-        </td>
-        <td class="size-px whitespace-nowrap">
-          <div class="px-6 py-3">
-            <button
-              type="button"
-              class="py-2 px-3 inline-flex items-center gap-x-2 text-xs font-medium rounded-lg border border-neutral-700 bg-neutral-700/45 text-neutral-300 shadow-sm hover:bg-neutral-700/35 focus:outline-none transition-all disabled:opacity-50 disabled:pointer-events-none"
-              id="copy-btn-${data.name}"
-            >
-              Copy URL
-              <svg
-                class="shrink-0 size-4 text-gray-400"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
-                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-              </svg>
-            </button>
-          </div>
-        </td>
-        <td class="size-px whitespace-nowrap">
-          <div class="px-6 py-3">
-            <span class="text-sm text-neutral-400">${data.views}</span>
-          </div>
-        </td>
-        <td class="size-px whitespace-nowrap">
-          <div class="px-6 py-1.5">
-            <div class="hs-dropdown [--placement:bottom-right] relative inline-block">
-              <button
-                id="hs-table-dropdown-2"
-                type="button"
-                class="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-700 align-middle disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm"
-                aria-haspopup="menu"
-                aria-expanded="false"
-                aria-label="Dropdown"
-              >
-                <svg
-                  class="shrink-0 size-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="12" r="1" />
-                  <circle cx="19" cy="12" r="1" />
-                  <circle cx="5" cy="12" r="1" />
-                </svg>
-              </button>
-              <div
-                class="hs-dropdown-menu transition-[opacity,margin] border-neutral-700  border filter backdrop-blur-sm duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-neutral-700 min-w-40 z-10 bg-neutral-700/75 shadow-2xl rounded-lg p-2 mt-2"
-                role="menu"
-                aria-orientation="vertical"
-                aria-labelledby="hs-table-dropdown-2"
-              >
-                <div class="py-2 first:pt-0 last:pb-0">
-                  <a
-                    class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                    href="#"
-                  >
-                    Delete
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </td>
-      `;
-
-      // Append the file element to the container
-      container.appendChild(fileElement);
-
-      // Add the click event for copying URL
-      const copyBtn = document.getElementById(`copy-btn-${data.name}`);
-      if (copyBtn) {
-        copyBtn.addEventListener('click', () => {
-          const url = `${window.location.origin}/images/${data.fullPath.replace("uploads/", "")}`;
-          navigator.clipboard.writeText(url)
-            .then(() => {
-              console.log("URL copied to clipboard");
-            })
-            .catch((err) => {
-              console.error("Failed to copy URL:", err);
-            });
-        });
-      }
-    });
-  })
-  .catch((error) => {
-    console.error("Error fetching files:", error);
-  });
-
-    });
-  </script>
 </html>

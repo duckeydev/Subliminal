@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Files</title>
-    <link rel="stylesheet" href="/assets/css/tailwind.css">
-    <script src="/node_modules/socket.io-client/dist/socket.io.min.js"></script>
-    <script src="/assets/js/bundle_hotreload.js"></script>
-    <script src="/node_modules/clipboard/dist/clipboard.min.js"></script>
-    <script src="/node_modules/preline/dist/helper-clipboard.js"></script>
-    <script src="/node_modules/axios/dist/axios.min.js"></script>
-    <script src="/assets/js/bundle_modals.js"></script>
-    <script src="/node_modules/animejs/lib/anime.min.js"></script>
-</head>  <script src="/assets/js/pageSpecific/dashboard.js"></script>
+  <%- include("../components/header.ejs", { title: "Home" }) %>
+  <script src="/assets/js/pageSpecific/dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="/assets/js/animeThyNavs.js"></script>
   <script src="/node_modules/colorthief/dist/color-thief.umd.js"></script>
@@ -139,21 +128,21 @@
               <span class="sr-only">Activity</span>
             </button>
 
-            <a
-              id="hs-dropdown-account"
-              href="/dashboard/account"
-              type="button"
-              class="size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-neutral-300 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:text-white"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-label="Dropdown"
-            >
-              <img
-                class="shrink-0 size-[38px] rounded-full"
-                src="/uploads/@<%=  data.name %>/avatar"
-                alt="Avatar"
-              />
-            </a>
+              <a
+                id="hs-dropdown-account"href="/dashboard/account"
+                type="button"
+                class="size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-neutral-300 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:text-white"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                aria-label="Dropdown"
+              >
+                <img
+                  class="shrink-0 size-[38px] rounded-full"
+                  src="/uploads/@<%=  data.name %>/avatar"
+                  alt="Avatar"
+                />
+              </a>
+
           </div>
         </div>
       </nav>
@@ -204,8 +193,8 @@
                   Dashboard
                 </a>
                 <a
-                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-200"
-                  href="/dashboard/files"
+                class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-400 hover:text-neutral-200/80 transition-colors"
+                href="/dashboard/files"
                   aria-current="page"
                 >
                   <svg
@@ -367,113 +356,291 @@
       <div
         class="max-w-[85rem] min-h-[75rem] mx-auto py-10 px-4 sm:px-6 lg:px-8"
       >
-        <div>
-          <h1 class="font-calsans text-3xl text-neutral-200">Your Files</h1>
-          <div class="grid grid-cols-3 grid-rows-5 gap-3 --prevent-on-load-init" id="contained"></div>
+        <div class="divide-y divide-white/5">
+          <div
+            class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8"
+          >
+            <div>
+              <h2 class="text-base font-semibold leading-7 text-white">
+                Personal Information
+              </h2>
+              <p class="mt-1 text-sm leading-6 text-neutral-400">
+                Use a permanent address where you can receive mail.
+              </p>
+            </div>
+
+            <div class="md:col-span-2">
+              <div
+                class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6"
+              >
+                <div class="col-span-full flex items-center gap-x-8">
+                  <img
+                    src="/uploads/@<%=  data.name %>/avatar"
+                    alt=""
+                    class="h-24 w-24 flex-none rounded-lg bg-neutral-800 object-cover"
+                  />
+                  <div>
+                    <div class="max-w-sm">
+                      <label class="block">
+                        <span class="sr-only">Choose profile photo</span>
+                        <input
+                          type="file"
+                          name="file"
+                          id="file"
+                          class="block w-full text-sm text-gray-500 file:me-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-white/10 file:text-neutral-200 hover:file:bg-white/30 file:disabled:opacity-50 file:disabled:pointer-events-none"
+                        />
+                      </label>
+                    </div>
+                    <p class="mt-2 text-xs leading-5 text-neutral-400">
+                      JPG, GIF or PNG. 1MB max.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="sm:col-span-3">
+                  <label
+                    for="first-name"
+                    class="block text-sm font-medium leading-6 text-white"
+                    >Name</label
+                  >
+                  <div class="mt-2">
+                    <input
+                      type="text"
+                      name="first-name"
+                      id="first-name"
+                      autocomplete="given-name"
+                      class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="sm:col-span-3">
+                  <label
+                    for="last-name"
+                    class="block text-sm font-medium leading-6 text-white"
+                    >Email address</label
+                  >
+                  <div class="mt-2">
+                    <input
+                      type="text"
+                      name="Email address"
+                      id="email"
+                      autocomplete="family-name"
+                      class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-span-full">
+                  <label
+                    for="username"
+                    class="block text-sm font-medium leading-6 text-white"
+                    >Username</label
+                  >
+                  <div class="mt-2">
+                    <div
+                      class="flex rounded-md bg-white/5 ring-1 ring-inset ring-white/10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
+                    >
+                      <span
+                        class="flex select-none items-center pl-3 text-neutral-400 sm:text-sm"
+                        >transit.ambrosia.gg/@</span
+                      >
+                      <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        autocomplete="username"
+                        class="flex-1 border-0 bg-transparent py-1.5 pl-1 text-white focus:ring-0 sm:text-sm sm:leading-6"
+                        placeholder="duck"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 flex">
+                <button
+                onclick="send()"
+                  class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8"
+          >
+            <div>
+              <h2 class="text-base font-semibold leading-7 text-white">
+                Change password
+              </h2>
+              <p class="mt-1 text-sm leading-6 text-neutral-400">
+                Update your password associated with your account.
+              </p>
+            </div>
+
+            <div class="md:col-span-2">
+              <div
+                class="grid grid-cols-1 gap-x-6 gap-y-8 sm:max-w-xl sm:grid-cols-6"
+              >
+                <div class="col-span-full">
+                  <label
+                    for="current-password"
+                    class="block text-sm font-medium leading-6 text-white"
+                    >Current password</label
+                  >
+                  <div class="mt-2">
+                    <input
+                      id="current-password"
+                      name="current_password"
+                      type="password"
+                      autocomplete="current-password"
+                      class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-span-full">
+                  <label
+                    for="new-password"
+                    class="block text-sm font-medium leading-6 text-white"
+                    >New password</label
+                  >
+                  <div class="mt-2">
+                    <input
+                      id="new_password"
+                      name="new_password"
+                      type="password"
+                      autocomplete="new-password"
+                      class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-span-full">
+                  <label
+                    for="confirm-password"
+                    class="block text-sm font-medium leading-6 text-white"
+                    >Confirm password</label
+                  >
+                  <div class="mt-2">
+                    <input
+                      id="confirm-password"
+                      name="confirm_password"
+                      type="password"
+                      autocomplete="new-password"
+                      class="block w-full rounded-md border-0 bg-white/5 py-1.5 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-8 flex">
+                <button
+                  onclick="reset()"
+                  class="rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="grid max-w-7xl grid-cols-1 gap-x-8 gap-y-10 px-4 py-16 sm:px-6 md:grid-cols-3 lg:px-8"
+          >
+            <div>
+              <h2 class="text-base font-semibold leading-7 text-white">
+                Delete account
+              </h2>
+              <p class="mt-1 text-sm leading-6 text-neutral-400">
+                No longer want to use our service? You can delete your account
+                here. This action is not reversible. All information related to
+                this account will be deleted permanently.
+              </p>
+            </div>
+
+            <div class="flex items-start md:col-span-2">
+              <button
+                type="submit"
+                class="rounded-md bg-red-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-400"
+              >
+                Yes, delete my account
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
-  </body>
-  <script>
-  axios
-      .get("/api/user/files")
-      .then((response) => {
-        // Debugging: Log the full response
-        console.log("API Response:", response);
-
-        const container = document.getElementById("contained");
-        if (!container) {
-          console.error("Element with ID 'contained' not found");
-          return;
+    <script>
+      const fn = document.getElementById("first-name");
+      const file = document.getElementById("file");
+      const email = document.getElementById("email");
+      const username = document.getElementById("username");
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          const response = await axios.get("/api/user/info/@me");
+          fn.value = response.data.name;
+          username.placeholder = response.data.slug;
+          email.value = response.data.email
+            ? response.data.email
+            : "johndoe@example.com";
+        } catch (error) {
+          console.error("Error fetching user info:", error);
         }
-
-        const files = response.data?.data?.files;
-        if (!files || files.length === 0) {
-          console.warn("No files found in the response");
-          return;
-        }
-
-        // Iterate over files and create elements
-        files.forEach((data) => {
-          const fileElement = document.createElement("div");
-          fileElement.className = "w-full";
-          fileElement.innerHTML = `
-        <div class="bg-neutral-800 border group border-neutral-700 rounded-lg overflow-hidden relative hs-dropdown [--trigger:contextmenu]">
-          <img
-            class="rounded-lg w-full max-h-[15rem] object-cover"
-            src="/${data.fullPath}" 
-            alt="${data.name}" 
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 w-full p-3 flex justify-between transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"
-          >
-            <h1 class="text-xl font-calsans text-neutral-300 truncate max-w-[12rem]">
-              ${data.name}
-            </h1>
-            <div>
-              <div class="hs-dropdown [--placement:top-right] relative inline-block">
-                <button
-                  type="button"
-                  class="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-300 align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all text-sm"
-                  aria-haspopup="menu"
-                  aria-expanded="false"
-                  aria-label="Dropdown"
-                >
-                  <svg
-                    class="shrink-0 size-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                    <circle cx="5" cy="12" r="1" />
-                  </svg>
-                </button>
-                <div
-                  class="hs-dropdown-menu transition-[opacity,margin] border-neutral-700 border filter backdrop-blur-sm duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-neutral-700 min-w-40 z-10 bg-neutral-800/75 shadow-2xl rounded-lg p-2 mt-2"
-                  role="menu"
-                >
-                  <div class="py-2 first:pt-0 last:pb-0">
-                    <a
-                      class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                      href="#"
-                    >
-                      Rename
-                    </a>
-                  </div>
-                  <div class="py-2 first:pt-0 last:pb-0">
-                    <a
-                      class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                      href="#"
-                    >
-                      Delete
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-          container.appendChild(fileElement);
-          
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching files:", error);
       });
-  </script>
-      <script src="/node_modules/preline/dist/preline.js"></script>
 
+      function send() {
+        if (file.files) {
+          const formData = new FormData();
+          formData.append("file", file.files[0]); // 'file' is the key expected by the server
+
+          const response = axios.post("/api/upload/avatar", formData, {
+            headers: {
+              "Content-Type": "multipart/div-data",
+            },
+          });
+        }
+
+        axios.patch("/api/user/edit/@me", { name: fn.value, email: email.value, username: username.value || username.placeholder }).then((response) => {
+          loadModal(response.data.type, response.data.message, true, "response.data")
+        })
+      }
+
+      function reset() {
+        const newpassword = document.getElementById("new_password")
+        const confirmpassword = document.getElementById("confirm-password")
+        const oldpassword = document.getElementById("current-password")
+
+        if (!newpassword.value) {
+          loadModal("error", "You forgot to enter the new password", true, "response.data")
+          return;
+        }
+
+        if (!confirmpassword.value) {
+          loadModal("error", "You forgot to confir, the new password", true, "response.data")
+          return;
+        }
+
+        if (!oldpassword.value) {
+          loadModal("error", "You forgot to enter the current password", true, "response.data")
+          return;
+        }
+
+        if (confirmpassword.value != newpassword.value) {
+          loadModal("error", "Wrong password for confirm!", true, "response.data")
+          return;
+        }
+        
+        axios.patch("/api/user/edit/@me/password", { cp: confirmpassword.value, password: btoa(confirmpassword.value).toString().replace('==', "<%= encryptKEY %>") }).then((response) => {
+          loadModal(response.data.type, response.data.message, true, "response.data")
+          window.location.reload
+        })
+
+      }
+    </script>
+  </body>
 </html>

@@ -1,18 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="h-full">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Files</title>
-    <link rel="stylesheet" href="/assets/css/tailwind.css">
-    <script src="/node_modules/socket.io-client/dist/socket.io.min.js"></script>
-    <script src="/assets/js/bundle_hotreload.js"></script>
-    <script src="/node_modules/clipboard/dist/clipboard.min.js"></script>
-    <script src="/node_modules/preline/dist/helper-clipboard.js"></script>
-    <script src="/node_modules/axios/dist/axios.min.js"></script>
-    <script src="/assets/js/bundle_modals.js"></script>
-    <script src="/node_modules/animejs/lib/anime.min.js"></script>
-</head>  <script src="/assets/js/pageSpecific/dashboard.js"></script>
+  <%- include("../components/header.ejs", { title: "Home" }) %>
+  <script src="/assets/js/pageSpecific/dashboard.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
   <script src="/assets/js/animeThyNavs.js"></script>
   <script src="/node_modules/colorthief/dist/color-thief.umd.js"></script>
@@ -139,21 +128,21 @@
               <span class="sr-only">Activity</span>
             </button>
 
-            <a
-              id="hs-dropdown-account"
-              href="/dashboard/account"
-              type="button"
-              class="size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-neutral-300 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:text-white"
-              aria-haspopup="menu"
-              aria-expanded="false"
-              aria-label="Dropdown"
-            >
-              <img
-                class="shrink-0 size-[38px] rounded-full"
-                src="/uploads/@<%=  data.name %>/avatar"
-                alt="Avatar"
-              />
-            </a>
+              <a
+                id="hs-dropdown-account"href="/dashboard/account"
+                type="button"
+                class="size-[38px] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-neutral-300 focus:outline-none disabled:opacity-50 disabled:pointer-events-none dark:text-white"
+                aria-haspopup="menu"
+                aria-expanded="false"
+                aria-label="Dropdown"
+              >
+                <img
+                  class="shrink-0 size-[38px] rounded-full"
+                  src="/uploads/@<%=  data.name %>/avatar"
+                  alt="Avatar"
+                />
+              </a>
+
           </div>
         </div>
       </nav>
@@ -204,8 +193,8 @@
                   Dashboard
                 </a>
                 <a
-                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-200"
-                  href="/dashboard/files"
+                class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-400 hover:text-neutral-200/80 transition-colors"
+                href="/dashboard/files"
                   aria-current="page"
                 >
                   <svg
@@ -229,8 +218,8 @@
                 </a>
 
                 <a
-                  class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-400 hover:text-neutral-200/80 transition-colors"
-                  href="/dashboard/files/upload"
+                class="py-2 md:py-0 flex items-center font-medium text-sm focus:outline-none text-neutral-200"
+                href="/dashboard/files/upload"
                   aria-current="page"
                 >
                   <svg
@@ -368,112 +357,120 @@
         class="max-w-[85rem] min-h-[75rem] mx-auto py-10 px-4 sm:px-6 lg:px-8"
       >
         <div>
+          <script src="/node_modules/lodash/lodash.min.js"></script>
+          <script src="/node_modules/dropzone/dist/dropzone-min.js"></script>
           <h1 class="font-calsans text-3xl text-neutral-200">Your Files</h1>
-          <div class="grid grid-cols-3 grid-rows-5 gap-3 --prevent-on-load-init" id="contained"></div>
+          <div id="hs-file-upload-with-limited-file-size" data-hs-file-upload='{
+            "url": "/api/upload",
+            "maxFilesize": 1000,
+            "extensions": {
+              "default": {
+                "class": "shrink-0 size-5"
+              },
+              "xls": {
+                "class": "shrink-0 size-5"
+              },
+              "pdf": {
+                "class": "shrink-0 size-5"
+              },
+              "zip": {
+                "class": "shrink-0 size-5"
+              },
+              "csv": {
+                "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M4 22h14a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v4\"/><path d=\"M14 2v4a2 2 0 0 0 2 2h4\"/><path d=\"m5 12-3 3 3 3\"/><path d=\"m9 18 3-3-3-3\"/></svg>",
+                "class": "shrink-0 size-5"
+              }
+            }
+          }'>
+            <template data-hs-file-upload-preview="">
+              <div class="p-3 bg-neutral-800 border border-solid border-neutral-700 rounded-xl">
+                <div class="mb-1 flex justify-between items-center">
+                  <div class="flex items-center gap-x-3">
+                    <span class="size-10 flex justify-center items-center border border-neutral-700  text-gray-500 rounded-lg" data-hs-file-upload-file-icon="">
+                      <img class="rounded-lg hidden" data-dz-thumbnail="">
+                    </span>
+                    <div>
+                      <p class="text-sm font-medium text-gray-800">
+                        <span class="truncate inline-block max-w-[300px] align-bottom" data-hs-file-upload-file-name=""></span>.<span data-hs-file-upload-file-ext=""></span>
+                      </p>
+                      <p class="text-xs text-gray-500" data-hs-file-upload-file-size="" data-hs-file-upload-file-success=""></p>
+                      <p class="text-xs text-red-500" style="display: none;" data-hs-file-upload-file-error="">File exceeds size limit.</p>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-x-2">
+                    <span class="hs-tooltip [--placement:top] inline-block" style="display: none;" data-hs-file-upload-file-error="">
+                      <span class="hs-tooltip-toggle text-red-500 hover:text-red-800 focus:outline-none focus:text-red-800">
+                        <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="12" x2="12" y1="8" y2="12"></line>
+                          <line x1="12" x2="12.01" y1="16" y2="16"></line>
+                        </svg>
+                        <span class="hs-tooltip-content max-w-[100px] hs-tooltip-shown:opacity-100 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-900 text-xs font-medium text-white rounded shadow-sm" role="tooltip">
+                          Please try to upload a file smaller than 1MB.
+                        </span>
+                      </span>
+                    </span>
+                    <button type="button" class="text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800" data-hs-file-upload-reload="">
+                      <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path>
+                        <path d="M21 3v5h-5"></path>
+                      </svg>
+                    </button>
+                    <button type="button" class="text-gray-500 hover:text-gray-800 focus:outline-none focus:text-gray-800" data-hs-file-upload-remove="">
+                      <svg class="shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18"></path>
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
+                        <line x1="10" x2="10" y1="11" y2="17"></line>
+                        <line x1="14" x2="14" y1="11" y2="17"></line>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+          
+                <div class="flex items-center gap-x-3 whitespace-nowrap">
+                  <div class="flex w-full h-2 bg-neutral-800 rounded-full overflow-hidden" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-hs-file-upload-progress-bar="">
+                    <div class="flex flex-col justify-center rounded-full overflow-hidden bg-blue-600 text-xs text-white text-center whitespace-nowrap transition-all duration-500 hs-file-upload-complete:bg-green-500" style="width: 0" data-hs-file-upload-progress-bar-pane=""></div>
+                  </div>
+                  <div class="w-10 text-end">
+                    <span class="text-sm text-gray-800">
+                      <span data-hs-file-upload-progress-bar-value="">0</span>%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </template>
+          
+            <div class="cursor-pointer p-12 flex justify-center bg-neutral-800 border border-dashed border-neutral-700 rounded-xl" data-hs-file-upload-trigger="">
+              <div class="text-center">
+                <span class="inline-flex justify-center items-center size-16 bg-neutral-700 text-neutral-300 rounded-full">
+                  <svg class="shrink-0 size-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" x2="12" y1="3" y2="15"></line>
+                  </svg>
+                </span>
+          
+                <div class="mt-4 flex flex-wrap justify-center text-sm leading-6 text-gray-600">
+                  <span class="pe-1 font-medium text-neutral-400">
+                    Drop your file here or
+                  </span>
+                  <span class="bg-neutral-800 font-semibold text-blue-600 hover:text-blue-700 rounded-lg decoration-2 hover:underline focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2">browse</span>
+                </div>
+          
+                <p class="mt-1 text-xs text-gray-400">
+                  Pick a file up to 2MB.
+                </p>
+              </div>
+            </div>
+          
+            <div class="mt-4 space-y-2 empty:mt-0" data-hs-file-upload-previews=""></div>
+          </div>
         </div>
       </div>
     </main>
     <!-- ========== END MAIN CONTENT ========== -->
+     <script>
+     </script>
   </body>
-  <script>
-  axios
-      .get("/api/user/files")
-      .then((response) => {
-        // Debugging: Log the full response
-        console.log("API Response:", response);
-
-        const container = document.getElementById("contained");
-        if (!container) {
-          console.error("Element with ID 'contained' not found");
-          return;
-        }
-
-        const files = response.data?.data?.files;
-        if (!files || files.length === 0) {
-          console.warn("No files found in the response");
-          return;
-        }
-
-        // Iterate over files and create elements
-        files.forEach((data) => {
-          const fileElement = document.createElement("div");
-          fileElement.className = "w-full";
-          fileElement.innerHTML = `
-        <div class="bg-neutral-800 border group border-neutral-700 rounded-lg overflow-hidden relative hs-dropdown [--trigger:contextmenu]">
-          <img
-            class="rounded-lg w-full max-h-[15rem] object-cover"
-            src="/${data.fullPath}" 
-            alt="${data.name}" 
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-b from-transparent to-neutral-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-in-out"
-          ></div>
-          <div
-            class="absolute bottom-0 left-0 w-full p-3 flex justify-between transform translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-in-out"
-          >
-            <h1 class="text-xl font-calsans text-neutral-300 truncate max-w-[12rem]">
-              ${data.name}
-            </h1>
-            <div>
-              <div class="hs-dropdown [--placement:top-right] relative inline-block">
-                <button
-                  type="button"
-                  class="hs-dropdown-toggle py-1.5 px-2 inline-flex justify-center items-center gap-2 rounded-lg text-gray-300 align-middle focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 transition-all text-sm"
-                  aria-haspopup="menu"
-                  aria-expanded="false"
-                  aria-label="Dropdown"
-                >
-                  <svg
-                    class="shrink-0 size-4"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  >
-                    <circle cx="12" cy="12" r="1" />
-                    <circle cx="19" cy="12" r="1" />
-                    <circle cx="5" cy="12" r="1" />
-                  </svg>
-                </button>
-                <div
-                  class="hs-dropdown-menu transition-[opacity,margin] border-neutral-700 border filter backdrop-blur-sm duration hs-dropdown-open:opacity-100 opacity-0 hidden divide-y divide-neutral-700 min-w-40 z-10 bg-neutral-800/75 shadow-2xl rounded-lg p-2 mt-2"
-                  role="menu"
-                >
-                  <div class="py-2 first:pt-0 last:pb-0">
-                    <a
-                      class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                      href="#"
-                    >
-                      Rename
-                    </a>
-                  </div>
-                  <div class="py-2 first:pt-0 last:pb-0">
-                    <a
-                      class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-neutral-400 hover:bg-neutral-800/75 focus:outline-none focus:bg-neutral-800/75"
-                      href="#"
-                    >
-                      Delete
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-          container.appendChild(fileElement);
-          
-        });
-      })
-      .catch((error) => {
-        console.error("Error fetching files:", error);
-      });
-  </script>
-      <script src="/node_modules/preline/dist/preline.js"></script>
-
 </html>
